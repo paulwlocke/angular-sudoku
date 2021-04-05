@@ -1,0 +1,46 @@
+.outer-cell-row {
+    margin-top: 0px;
+}
+
+.clear-inner,.clear-outer, clear {
+    clear: both;
+}
+
+.outerCell {
+    border-style: solid;
+    border-width: 2px;
+    float: left;
+    padding: 2px;
+}
+
+.innerCell_dim_3 {
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    background: #ffffff;
+    float: left;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.innerCell_dim_4 {
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    background: #ffffff;
+    float: left;
+    padding: 3px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+.cell-selected {
+    background-color: coral;
+}
+
+.cell-assigned {
+    font-weight: bold;
+}

@@ -1,0 +1,25 @@
+.input-button {
+    background-color: silver;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  ul.selection-type {
+    padding-inline-start: 10px;
+  }
+  
+  ul.selection-type li {
+    display: inline;
+    padding-right: 2px;
+  }
+  
+  li.button-control {
+    padding-left: 10px;
+    padding-inline-start: 20px;
+  }
+  
+  p {
+    font-weight: bold;
+  }

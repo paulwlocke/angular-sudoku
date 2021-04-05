@@ -1,0 +1,35 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>
+        Welcome to {{ title }}!
+      </h1>
+      <p class="text-left">{{description}}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="!dimension; else gridBlock">
+    <div class="col-12">
+      <p>Specify dimension</p>
+      <div class="custom-control custom-radio">
+        <input id="dim-3" [(ngModel)]="dimension" type="radio" class="custom-control-input" [value]="3" name="dimension">
+        <label class="custom-control-label" for="dim-3">9 x 9</label>
+     </div>
+  
+     <div class="custom-control custom-radio">
+        <input id="dim-4" [(ngModel)]="dimension" type="radio" class="custom-control-input" [value]="4" name="dimension">
+        <label class="custom-control-label" for="dim-4">16 x 16</label>
+     </div>  
+    </div>
+  </div>
+  <ng-template #gridBlock>
+    <div class="row">
+      <div class="col-12">
+        <app-sudoku-grid [dimension]="dimension"></app-sudoku-grid>
+      </div>
+    </div>  
+  </ng-template>
+  
+</div>
+
+

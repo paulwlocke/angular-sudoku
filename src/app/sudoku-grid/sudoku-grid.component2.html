@@ -1,0 +1,55 @@
+<ul>
+    <li>Dimension {{gridDimension * gridDimension}} x {{gridDimension * gridDimension}}</li>
+    <li [ngSwitch]="mode">
+      <span *ngSwitchCase="0">Setting up</span>
+      <span *ngSwitchCase="1">Solving</span>
+    </li>
+    <li>Selected cell: {{currentlySelected | json}}</li>
+</ul>
+<div class="container">
+  <div class="row">
+    <div [ngClass]="{ 'col-7' : gridDimension == 3, 'col-8' : gridDimension == 4}">
+      <div id="grid">
+        <div 
+          *ngFor="let oc of generateArray2(); let i = index" 
+          class="outerCell" [ngClass]="{ 'clear-outer' : i % gridDimension == 0 }">
+          <div 
+            *ngFor="let ic of generateArray2(); let j = index"
+             [ngClass]="{ 
+               'innerCell_dim_3' : gridDimension == 3,
+               'innerCell_dim_4' : gridDimension == 4,
+               'clear-inner' : j % gridDimension == 0, 
+               'cell-selected' : isCellSelected(i+1,j+1),
+               'cell-assigned' : isCellAssigned(i+1, j+1) }"
+             [ngStyle]="{
+               'color' : isCellAssigned(i+1, j+1) ? 'blue' : 'white'
+             }"
+             [title]="'Cell_' + (i+1) + '_' + (j+1)"
+             [innerHTML]="getCellSymbol(i+1, j+1) || '&nbsp;'"
+             (click)="selectCell(i+1, j+1)"
+          >
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>      
+    </div>
+    <div [ngClass]="{ 'col-3' : gridDimension == 3, 'col-2' : gridDimension == 4}">
+      <div *ngIf="currentlySelected">
+        <span style="margin-left: 15px">Selected cell ({{currentlySelected.outer}}, {{currentlySelected.inner}})</span>
+        
+        <app-number-chooser (assign-to-cell)="assignValue($event)" [dimension]="gridDimension" [cell]="currentlySelected" [choose-from]="getCellCandidates(currentlySelected.outer,currentlySelected.inner)"></app-number-chooser>
+        
+      </div>      
+    </div>
+    <div [ngClass]="{ 'col-2' : gridDimension == 3, 'col-2' : gridDimension == 4}">
+      <p><strong>Assignment History</strong></p>
+      <ul>
+        <li *ngFor="let a of assignmentHistory, last as isLast; let i = index; ">
+          ({{a.cell.outer}}, {{a.cell.inner}}) to {{a.value}} <a href="#" [ngClass]="" (click)="undoLastAssignment()" *ngIf="isLast">Undo</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+

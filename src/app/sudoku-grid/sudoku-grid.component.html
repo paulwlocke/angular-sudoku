@@ -1,0 +1,20 @@
+<ul>
+  <li>Dimension {{gridDimension}} x {{gridDimension}}</li>
+  <li [ngSwitch]="mode">
+    <span *ngSwitchCase="0">Setting up</span>
+    <span *ngSwitchCase="1">Solving</span>
+  </li>
+</ul>
+<div class="container outer-cell-row" *ngFor="let y of generateArray(); let j = index">
+  <app-outer-cell 
+  (cellAssignment)="cellAssignment($event)"
+  *ngFor="let x of generateArray(); let i = index" 
+  [dimension]="gridDimension"
+  [outerCellIndex]="(j * gridDimension) + (i+1)"></app-outer-cell>
+</div>
+<div *ngIf="currentlySelected">
+  <span style="margin-left: 15px">Selected cell ({{currentlySelected.outer}}, {{currentlySelected.inner}})</span>
+  <app-candidate-selector [choose-from]="[3,4,7,9]"></app-candidate-selector>
+</div>
+
+
